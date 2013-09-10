@@ -142,7 +142,7 @@ EOF
       def call(method, params, piwik_url=nil, auth_token=nil)
         params ||= {}
         raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key" if piwik_url.nil? || auth_token.nil?
-        url = "#{piwik_url}?"
+        url = "#{piwik_url}/?"
         params.merge!({:module => 'API', :format => 'xml', :method => method})
         params.merge!({:token_auth => auth_token}) unless auth_token.nil?
         url << params.map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.join('&')
